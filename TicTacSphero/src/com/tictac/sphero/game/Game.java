@@ -5,6 +5,10 @@ public class Game {
 	private Player[][] cell;
 	
 	public Game() {
+		this.restart();
+	}
+	
+	public void restart() {
 		currentPlayer = Player.X;
 		cell = new Player[3][3];
 		for (int x=0; x<3; x++) {

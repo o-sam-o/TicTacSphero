@@ -1,6 +1,8 @@
 package com.tictac.sphero.view;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -48,40 +50,82 @@ public class GameView extends View {
   	    for (int x=0; x<3; x++) {
   	    	for (int y=0; y<3; y++) {
   	    		drawMove(canvas, x, y, game.get(x, y));
-  	  	    	updateSpheroGrid(x, y, game.get(x, y));
   	    	}
-  	    }
-
-  	    if(game.isGameOver()) {
-  	    	handleGameOver();
   	    }
   	    
 	    super.onDraw(canvas);
 	}
-
-	private void updateSpheroGrid(int x, int y, Player player) {
-		// TODO Auto-generated method stub
+	
+	/** Copies the state of Game to SpheroGrid. */
+	private void updateSpheroGrid() {
+		for (int x=0; x<3; x++) {
+  	    	for (int y=0; y<3; y++) {
+  	  	    	// TODO: spheroGrid.set(x, y, game.get(x, y));
+  	    	}
+  	    }
 	}
 
-	public void handleGameOver() {
+	public void showGameOverDialog() {
 		Log.i("TTS", "Winner is " + game.getWinner());
 		
-		//TODO handle game over;
+		String gameOverMessage;
+		Player winner = game.getWinner();
+		if (winner == Player.X) {
+			gameOverMessage = "X wins!";
+		} else if (winner == Player.O) {
+			gameOverMessage = "O wins!";
+		} else {
+			gameOverMessage = "Tie!";
+		}
+		
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this.getContext());
+		alertBuilder.setMessage(gameOverMessage);
+		alertBuilder.setPositiveButton("Restart", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				// nothing
+			}
+		});
+		AlertDialog dialog = alertBuilder.create();
+		dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+			public void onDismiss(DialogInterface dialog) {
+				game.restart();
+				GameView.this.gameDidChange();
+			}
+		});
+		dialog.show();
 	}
 	
 	@Override
     public boolean onTouchEvent(MotionEvent event) {
-            int xCell = (int) (event.getX() / (this.getWidth() / BOARD_SIZE));
-            int yCell = (int) (event.getY() / (this.getHeight() / BOARD_SIZE));
-
-            Log.d("TTS", String.format("Cick on (%s, %s)", xCell, yCell));
-            
-            game.makeMove(xCell, yCell);
-
-            this.invalidate();
-            
-            return super.onTouchEvent(event);
+		// Only process "tap up" events
+		if (event.getAction() != MotionEvent.ACTION_UP) {
+			return true;	// needed so that ACTION_UP is sent later
+		}
+		
+		// Ignore taps when game is over
+		if (game.isGameOver()) {
+			return true;
+		}
+		
+		int x = (int) (event.getX() / (this.getWidth() / BOARD_SIZE));
+        int y = (int) (event.getY() / (this.getHeight() / BOARD_SIZE));
+        Log.d("TTS", String.format("Click on (%s, %s)", x, y));
+        
+        game.makeMove(x, y);
+        this.gameDidChange();
+        
+        if (game.isGameOver()) {
+            showGameOverDialog();
+  	    }
+        
+        super.onTouchEvent(event);
+        return true;
     }
+	
+	private void gameDidChange() {
+		this.invalidate();			// repaint self
+        this.updateSpheroGrid();
+	}
 	
 	private void drawMove(Canvas canvas, int xCell, int yCell, Player player) {
 		if (player == Player.NONE) {
