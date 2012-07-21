@@ -41,10 +41,11 @@ public class GameView extends View {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
+		Log.d("TTS", "On Draw");
   	   drawBoardLines(canvas);
 		
        drawMove(canvas, toDrawX, toDrawY, Player.O);
-       
+      
 	   super.onDraw(canvas);
 	}
 
@@ -58,10 +59,13 @@ public class GameView extends View {
             toDrawX = xCell;
             toDrawY = yCell;
 
+            this.invalidate();
+            
             return super.onTouchEvent(event);
     }
 	
 	private void drawMove(Canvas canvas, int xCell, int yCell, Player player) {
+		Log.d("TTS", "draw move (" + xCell + "," + yCell + ") for " + player);
 		Point imgLocation = getImgLocationFor(xCell, yCell);
 		canvas.drawBitmap(getPlayerOrb(player), imgLocation.x, imgLocation.y, new Paint());
 	}
