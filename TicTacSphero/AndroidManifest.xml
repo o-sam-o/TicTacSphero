@@ -13,13 +13,20 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".GameActivity"
-            android:label="@string/title_activity_game" >
+            android:label="@string/title_activity_game"
+            android:launchMode="singleTask" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+         <activity android:name="orbotix.robot.app.StartupActivity"
+        android:theme="@android:style/Theme.Translucent"
+        android:launchMode="singleTop"/>
     </application>
 
+       <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    
 </manifest>
