@@ -84,6 +84,10 @@ public class GameView extends View {
     }
 	
 	private void drawMove(Canvas canvas, int xCell, int yCell, Player player) {
+		if (player == Player.NONE) {
+			return;
+		}
+		
 		Log.d("TTS", "draw move (" + xCell + "," + yCell + ") for " + player);
 		Point imgLocation = getImgLocationFor(xCell, yCell);
 		canvas.drawBitmap(getPlayerOrb(player), imgLocation.x, imgLocation.y, new Paint());
