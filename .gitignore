@@ -1,0 +1,10 @@
+# Projects
+.classpath
+.project
+
+# Generated
+bin
+gen
+
+# OS X
+.DS_Store

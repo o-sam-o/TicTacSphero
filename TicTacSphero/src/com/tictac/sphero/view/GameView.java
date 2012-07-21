@@ -13,7 +13,6 @@ import android.view.View;
 
 import com.tictac.sphero.R;
 import com.tictac.sphero.game.Game;
-import com.tictac.sphero.game.GameCell;
 import com.tictac.sphero.game.Player;
 
 public class GameView extends View {
@@ -46,9 +45,11 @@ public class GameView extends View {
 		Log.d("TTS", "On Draw");
   	    drawBoardLines(canvas);
 		
-  	    for(GameCell cell : game.getCells()) {
-  	    	drawMove(canvas, cell.getX(), cell.getY(), cell.getPlayer());
-  	    	updateSpheroGrid(cell.getX(), cell.getY(), cell.getPlayer());
+  	    for (int x=0; x<3; x++) {
+  	    	for (int y=0; y<3; y++) {
+  	    		drawMove(canvas, x, y, game.get(x, y));
+  	  	    	updateSpheroGrid(x, y, game.get(x, y));
+  	    	}
   	    }
 
   	    if(game.isGameOver()) {
