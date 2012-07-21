@@ -12,22 +12,24 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.tictac.sphero.R;
+import com.tictac.sphero.game.Game;
+import com.tictac.sphero.game.GameCell;
 import com.tictac.sphero.game.Player;
 
 public class GameView extends View {
 
 	public final static int BOARD_SIZE = 3;
 	
+	private Game game;
 	private Paint paint;
 	
 	private Bitmap xOrbImg;
 	private Bitmap yOrbImg;
 	
-	public int toDrawX = 1;
-	public int toDrawY = 1;
-	
 	public GameView(Context context) {
 		super(context);
+		
+		game = new Game();
 		
 		paint = new Paint();
         this.paint.setARGB(255, 0, 0, 0);
@@ -42,13 +44,30 @@ public class GameView extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		Log.d("TTS", "On Draw");
-  	   drawBoardLines(canvas);
+  	    drawBoardLines(canvas);
 		
-       drawMove(canvas, toDrawX, toDrawY, Player.O);
-      
-	   super.onDraw(canvas);
+  	    for(GameCell cell : game.getCells()) {
+  	    	drawMove(canvas, cell.getX(), cell.getY(), cell.getPlayer());
+  	    	updateSpheroGrid(cell.getX(), cell.getY(), cell.getPlayer());
+  	    }
+
+  	    if(game.isGameOver()) {
+  	    	handleGameOver();
+  	    }
+  	    
+	    super.onDraw(canvas);
 	}
 
+	private void updateSpheroGrid(int x, int y, Player player) {
+		// TODO Auto-generated method stub
+	}
+
+	public void handleGameOver() {
+		Log.i("TTS", "Winner is " + game.getWinner());
+		
+		//TODO handle game over;
+	}
+	
 	@Override
     public boolean onTouchEvent(MotionEvent event) {
             int xCell = (int) (event.getX() / (this.getWidth() / BOARD_SIZE));
@@ -56,8 +75,7 @@ public class GameView extends View {
 
             Log.d("TTS", String.format("Cick on (%s, %s)", xCell, yCell));
             
-            toDrawX = xCell;
-            toDrawY = yCell;
+            game.makeMove(xCell, yCell);
 
             this.invalidate();
             
