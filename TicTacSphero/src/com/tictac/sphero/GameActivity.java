@@ -1,15 +1,20 @@
 package com.tictac.sphero;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+
+import com.tictac.sphero.view.GameView;
 
 public class GameActivity extends Activity {
 
+	private GameView gameView;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        gameView = new GameView(this);
+        setContentView(gameView);
     }
 
     @Override
