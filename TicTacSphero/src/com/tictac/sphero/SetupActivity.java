@@ -6,6 +6,8 @@ import orbotix.robot.app.MultipleRobotStartupActivity;
 import orbotix.robot.base.Robot;
 import orbotix.robot.base.RobotProvider;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -26,6 +28,16 @@ public class SetupActivity extends Activity {
         
         Intent i = new Intent(this, MultipleRobotStartupActivity.class);  
         startActivityForResult(i, STARTUP_ACTIVITY);
+        
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+		alertBuilder.setMessage("Each time a Sphero blinks, move it into the appropriate position on the grid. When all 9 spheros are in place, the game will begin.");
+		alertBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				// nothing
+			}
+		});
+		AlertDialog dialog = alertBuilder.create();
+		dialog.show();
         
         setupView = new SetupView(this);
         setContentView(setupView);
