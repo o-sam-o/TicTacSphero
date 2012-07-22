@@ -1,6 +1,15 @@
 package com.tictac.sphero.view;
 
+import com.tictac.sphero.R;
+import com.tictac.sphero.game.Game;
+import com.tictac.sphero.game.Player;
+import com.tictac.sphero.robot.SpheroGrid;
+import com.tictac.sphero.GameActivity;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -180,6 +189,7 @@ public class SetupView extends View {
 			restartBlinking();
 		} else {
 			stopBlinking();
+<<<<<<< HEAD
 			
 			// HACK: Send data via global variable
 			GameView.spheroGrid = spheroGrid;
@@ -187,10 +197,35 @@ public class SetupView extends View {
 			Intent gotoGameActivity = new Intent(getContext(), GameActivity.class);
 			getContext().startActivity(gotoGameActivity);
 			activity.finish();
+=======
+			showDoneDialog();
+>>>>>>> Add 'Ready to play' dialog after setup view completes.
 		}
 		
 		return true;
 	}
+	
+    private void showDoneDialog() {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this.getContext());
+        alertBuilder.setMessage("Ready to play!");
+        alertBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // nothing
+            }
+        });
+        AlertDialog dialog = alertBuilder.create();
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            public void onDismiss(DialogInterface dialog) {
+                // HACK: Send data via global variable
+                GameView.spheroGrid = spheroGrid;
+                
+                Intent gotoGameActivity = new Intent(getContext(),
+                        GameActivity.class);
+                getContext().startActivity(gotoGameActivity);
+            }
+        });
+        dialog.show();
+    }
 	
 	// === Model: General ===
 	
