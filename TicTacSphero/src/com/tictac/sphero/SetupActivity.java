@@ -67,9 +67,9 @@ public class SetupActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == STARTUP_ACTIVITY && resultCode == RESULT_OK) {
-			grid = new SpheroGrid(RobotProvider.getDefaultProvider().getControlledRobots());
+			grid = new SpheroGrid(this, RobotProvider.getDefaultProvider().getControlledRobots());
 		} else {
-			grid = new SpheroGrid(new ArrayList<Robot>());
+			grid = new SpheroGrid(this, new ArrayList<Robot>());
 			Toast.makeText(this, "No Spheros connected!", 5).show();
 		}
 		logMedioEvents();

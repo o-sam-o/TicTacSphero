@@ -120,7 +120,18 @@ public class GameView extends View {
 		}
 	}
 	
-	public void winAnimation(final boolean on){
+	private void startWinAnimation() {
+		winAnimation(false);
+		
+		// Make the winning orbs dance
+		if (game.isGameOver()) {
+			for (Point p : game.getWinningCells()) {
+				spheroGrid.startDance(p.x, p.y);
+			}
+		}
+	}
+	
+	private void winAnimation(final boolean on){
 		if (!game.isGameOver()) {
 			//End animation
 			return;
@@ -166,7 +177,7 @@ public class GameView extends View {
         if (game.isGameOver()) {
             showGameOverDialog();
             logMedioGameEnd();
-            winAnimation(false);
+            startWinAnimation();
   	    }
         
         super.onTouchEvent(event);
