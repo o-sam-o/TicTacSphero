@@ -192,9 +192,9 @@ public class GameView extends View {
 		String gameOverMessage;
 		Player winner = game.getWinner();
 		if (winner == Player.X) {
-			gameOverMessage = "X wins!";
+			gameOverMessage = "Blue wins!";
 		} else if (winner == Player.O) {
-			gameOverMessage = "O wins!";
+			gameOverMessage = "Green wins!";
 		} else {
 			gameOverMessage = "Tie!";
 		}
