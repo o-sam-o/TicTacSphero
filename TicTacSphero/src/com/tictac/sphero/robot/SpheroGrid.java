@@ -40,7 +40,7 @@ public class SpheroGrid {
 			RGBLEDOutputCommand.sendCommand(robot, 0, 0, 0);
 			break;
 	    case O:
-			RGBLEDOutputCommand.sendCommand(robot, 255, 0, 0);
+			RGBLEDOutputCommand.sendCommand(robot, 0, 255, 0);
 	    	break;
 	    case X:
 			RGBLEDOutputCommand.sendCommand(robot, 0, 0, 255);

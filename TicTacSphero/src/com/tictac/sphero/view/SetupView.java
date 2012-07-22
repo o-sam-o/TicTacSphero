@@ -150,7 +150,9 @@ public class SetupView extends View {
 	}
 	
 	private void restartBlinking() {
-		blinkThread.interrupt();
+		if(blinkThread != null) {
+			blinkThread.interrupt();
+		}
 	}
 	
 	private void stopBlinking() {
