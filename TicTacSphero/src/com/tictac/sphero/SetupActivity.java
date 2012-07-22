@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.tictac.sphero.view.SetupView;
@@ -25,8 +26,12 @@ public class SetupActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        Log.d("TTS", String.format("SetupActivity.onCreate"));
+        
+        /*
         Intent i = new Intent(this, MultipleRobotStartupActivity.class);  
-        startActivityForResult(i, STARTUP_ACTIVITY);  
+        startActivityForResult(i, STARTUP_ACTIVITY);
+        */
         
         setupView = new SetupView(this);
         setContentView(setupView);
