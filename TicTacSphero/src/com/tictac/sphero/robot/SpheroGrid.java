@@ -18,8 +18,8 @@ public class SpheroGrid {
 	public SpheroGrid(List<Robot> robots) {
 		this.robots = robots;
 		robotColors = new ArrayList<Player>();
-		for (int x = 0; x < 3; x++) {
-			for (int y = 0; y < 3; y++) {
+		for (int y = 0; y < 3; y++) {
+			for (int x = 0; x < 3; x++) {
 				robotColors.add(Player.NONE);
 				set(x, y, Player.NONE);
 			}
@@ -29,7 +29,7 @@ public class SpheroGrid {
 	public void set(int x, int y, Player player) {
 		robotColors.set(getIndex(x, y), player);
 		
-		if(robots.size() < getIndex(x, y) + 1) {
+		if (!(getIndex(x, y) < robots.size())) {
 			Log.w("TTS", "Not enough Spheros! Unable to update (" + x + ", " + y + ")");
 			return;
 		}
@@ -55,14 +55,7 @@ public class SpheroGrid {
 	}
 	
 	private int getIndex(int x, int y) {
-		int xCoefficient = 0;
-		if(x == 1) {
-			xCoefficient = 3;
-		} else if (x == 2) {
-			xCoefficient = 6;
-		}
-		
-		return xCoefficient + y;
+		return x + y*3;
 	}
 	
 }

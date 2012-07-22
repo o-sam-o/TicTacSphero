@@ -16,6 +16,7 @@ import android.view.View;
 import com.tictac.sphero.R;
 import com.tictac.sphero.game.Game;
 import com.tictac.sphero.game.Player;
+import com.tictac.sphero.robot.SpheroGrid;
 
 public class GameView extends View {
 	private final static int BOARD_SIZE = 3;
@@ -25,6 +26,9 @@ public class GameView extends View {
 	
 	private Bitmap xOrbImg;
 	private Bitmap yOrbImg;
+	
+	// HACK: Passing this argument as a global variable
+	public static SpheroGrid spheroGrid;
 	
 	public GameView(Context context) {
 		super(context);
@@ -179,7 +183,7 @@ public class GameView extends View {
 	private void updateSpheroGrid() {
 		for (int x=0; x<3; x++) {
   	    	for (int y=0; y<3; y++) {
-  	  	    	// TODO: spheroGrid.set(x, y, game.get(x, y));
+  	  	    	spheroGrid.set(x, y, game.get(x, y));
   	    	}
   	    }
 	}

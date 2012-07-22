@@ -3,6 +3,7 @@ package com.tictac.sphero.view;
 import com.tictac.sphero.R;
 import com.tictac.sphero.game.Game;
 import com.tictac.sphero.game.Player;
+import com.tictac.sphero.robot.SpheroGrid;
 import com.tictac.sphero.GameActivity;
 
 import android.content.Context;
@@ -28,6 +29,8 @@ public class SetupView extends View {
 	private int blinkingOrbIndex = 0;
 	private boolean blinkingOrbOn = false;
 	
+	private SpheroGrid spheroGrid;
+	
 	public SetupView(Context context) {
 		super(context);
 		
@@ -39,8 +42,12 @@ public class SetupView extends View {
         
         xOrbImg = BitmapFactory.decodeResource(getResources(), R.drawable.x_orb);
         yOrbImg = BitmapFactory.decodeResource(getResources(), R.drawable.y_orb);
-        
-        this.startBlinking();
+	}
+	
+	public void start(SpheroGrid spheroGrid) {
+		this.spheroGrid = spheroGrid;
+		
+		this.startBlinking();
 	}
 	
 	// === Draw ===
@@ -170,6 +177,9 @@ public class SetupView extends View {
 		} else {
 			stopBlinking();
 			
+			// HACK: Send data via global variable
+			GameView.spheroGrid = spheroGrid;
+			
 			Intent gotoGameActivity = new Intent(getContext(), GameActivity.class);
 			getContext().startActivity(gotoGameActivity);
 		}
@@ -186,7 +196,9 @@ public class SetupView extends View {
 		
 		game_set(x, y, color);
 		this.postInvalidate();
-		// TODO: spheroGrid.set(x, y, color);
+		if (spheroGrid != null) {
+			spheroGrid.set(x, y, color);
+		}
 	}
 	
 	// === Model: Game ===
