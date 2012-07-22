@@ -1,6 +1,8 @@
 package com.tictac.sphero;
 
-import orbotix.robot.app.StartupActivity;
+import java.util.List;
+
+import orbotix.robot.app.MultipleRobotStartupActivity;
 import orbotix.robot.base.RGBLEDOutputCommand;
 import orbotix.robot.base.Robot;
 import orbotix.robot.base.RobotProvider;
@@ -8,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 import com.tictac.sphero.view.SetupView;
 
@@ -16,13 +19,13 @@ public class SetupActivity extends Activity {
 	private final static int STARTUP_ACTIVITY = 0;
 	
 	private SetupView setupView;
-	private Robot mRobot;
+	private List<Robot> robots;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        Intent i = new Intent(this, StartupActivity.class);  
+        Intent i = new Intent(this, MultipleRobotStartupActivity.class);  
         startActivityForResult(i, STARTUP_ACTIVITY);  
         
         setupView = new SetupView(this);
@@ -32,18 +35,16 @@ public class SetupActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == STARTUP_ACTIVITY && resultCode == RESULT_OK) {
-			// Get the connected Robot
-			final String robot_id = data
-					.getStringExtra(StartupActivity.EXTRA_ROBOT_ID);
-			if (robot_id != null && !robot_id.equals("")) {
-				mRobot = RobotProvider.getDefaultProvider().findRobot(robot_id);
-			}
+			robots = RobotProvider.getDefaultProvider().getControlledRobots();
+		} else {
+			Toast.makeText(this, "Robot connect fail", 300);
 		}
 		blink(false);
 	}
 	
 	private void blink(final boolean lit) {
-		if (mRobot != null) {
+		if (robots != null) {
+			for(Robot mRobot : robots) {
 			// If not lit, send command to show blue light, or else, send
 			// command to show no light
 			if (lit) {
@@ -59,6 +60,7 @@ public class SetupActivity extends Activity {
 					blink(!lit);
 				}
 			}, 1000);
+			}
 		}
 	}
     
