@@ -1,22 +1,21 @@
 package com.tictac.sphero.view;
 
-import com.tictac.sphero.R;
-import com.tictac.sphero.game.Game;
-import com.tictac.sphero.game.Player;
-import com.tictac.sphero.robot.SpheroGrid;
-import com.tictac.sphero.GameActivity;
-
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.Paint.Style;
+import android.graphics.Point;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.tictac.sphero.GameActivity;
+import com.tictac.sphero.R;
+import com.tictac.sphero.game.Player;
+import com.tictac.sphero.robot.SpheroGrid;
 
 public class SetupView extends View {
 	private final static int BOARD_SIZE = 3;
@@ -31,8 +30,11 @@ public class SetupView extends View {
 	
 	private SpheroGrid spheroGrid;
 	
-	public SetupView(Context context) {
+	private Activity activity;
+	
+	public SetupView(Activity context) {
 		super(context);
+		this.activity = context;
 		
 		paint = new Paint();
         this.paint.setARGB(255, 0, 0, 0);
@@ -184,6 +186,7 @@ public class SetupView extends View {
 			
 			Intent gotoGameActivity = new Intent(getContext(), GameActivity.class);
 			getContext().startActivity(gotoGameActivity);
+			activity.finish();
 		}
 		
 		return true;

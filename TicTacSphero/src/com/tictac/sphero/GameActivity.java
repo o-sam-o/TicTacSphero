@@ -15,6 +15,7 @@ public class GameActivity extends Activity {
         super.onCreate(savedInstanceState);
         gameView = new GameView(this);
         setContentView(gameView);
+        getWindow().setWindowAnimations(0);
     }
 
     @Override
