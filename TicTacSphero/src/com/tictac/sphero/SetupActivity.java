@@ -1,15 +1,15 @@
 package com.tictac.sphero;
 
+import java.util.ArrayList;
+
 import orbotix.robot.app.MultipleRobotStartupActivity;
+import orbotix.robot.base.Robot;
 import orbotix.robot.base.RobotProvider;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.tictac.sphero.game.Player;
 import com.tictac.sphero.robot.SpheroGrid;
 import com.tictac.sphero.view.SetupView;
 
@@ -35,9 +35,10 @@ public class SetupActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == STARTUP_ACTIVITY && resultCode == RESULT_OK) {
 			grid = new SpheroGrid(RobotProvider.getDefaultProvider().getControlledRobots());
-			setupView.start(grid);
 		} else {
-			Toast.makeText(this, "Robot connect fail", 300);
+			grid = new SpheroGrid(new ArrayList<Robot>());
+			Toast.makeText(this, "No Spheros connected!", 5).show();
 		}
+		setupView.start(grid);
 	}
 }
