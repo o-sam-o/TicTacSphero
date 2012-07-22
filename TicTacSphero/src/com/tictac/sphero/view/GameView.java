@@ -1,5 +1,8 @@
 package com.tictac.sphero.view;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,6 +16,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.medio.client.android.eventsdk.EventAPI;
 import com.tictac.sphero.R;
 import com.tictac.sphero.game.Game;
 import com.tictac.sphero.game.Player;
@@ -136,11 +140,25 @@ public class GameView extends View {
         
         if (game.isGameOver()) {
             showGameOverDialog();
+            logMedioGameEnd();
   	    }
         
         super.onTouchEvent(event);
         return true;
     }
+	
+	private void logMedioGameEnd() {
+		if (game.isGameOver()) {
+			Map<String, String> stats = new HashMap<String, String>();
+			if(game.isTie()) {
+				stats.put("tie", "1");
+			} else {
+				stats.put("winner", game.getWinner().toString());
+			}
+			EventAPI.logEvent("gameOver", stats);
+			EventAPI.flushEvents();
+		}
+	}
 	
 	public void showGameOverDialog() {
 		Log.i("TTS", "Winner is " + game.getWinner());

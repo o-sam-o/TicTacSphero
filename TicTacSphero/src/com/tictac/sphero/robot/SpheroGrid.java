@@ -26,6 +26,10 @@ public class SpheroGrid {
 		}
 	}
 	
+	public int getSpherosConnected(){
+		return robots.size();
+	}
+	
 	public void set(int x, int y, Player player) {
 		robotColors.set(getIndex(x, y), player);
 		

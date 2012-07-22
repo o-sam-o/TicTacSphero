@@ -212,6 +212,7 @@ public class SetupView extends View {
                 Intent gotoGameActivity = new Intent(getContext(),
                         GameActivity.class);
                 getContext().startActivity(gotoGameActivity);
+                activity.finish();
             }
         });
         dialog.show();
