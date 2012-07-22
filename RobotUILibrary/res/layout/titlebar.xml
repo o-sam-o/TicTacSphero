@@ -14,7 +14,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Title"
+                android:text="Select 9 Spheros"
                 style="@style/Dialog.Title.Text"
                 android:ellipsize="end"
                 />
