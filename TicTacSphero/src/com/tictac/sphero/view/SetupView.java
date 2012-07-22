@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Point;
@@ -46,10 +47,11 @@ public class SetupView extends View {
 		this.activity = context;
 		
 		paint = new Paint();
-        this.paint.setARGB(255, 0, 0, 0);
+        this.paint.setARGB(255, 255, 255, 255);
         this.paint.setAntiAlias(true);
         this.paint.setStyle(Style.STROKE);
         this.paint.setStrokeWidth(5);
+        this.setBackgroundColor(Color.BLACK);
         
         xOrbImg = BitmapFactory.decodeResource(getResources(), R.drawable.x_orb);
         yOrbImg = BitmapFactory.decodeResource(getResources(), R.drawable.y_orb);
