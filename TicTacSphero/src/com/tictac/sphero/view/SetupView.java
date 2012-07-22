@@ -189,17 +189,7 @@ public class SetupView extends View {
 			restartBlinking();
 		} else {
 			stopBlinking();
-<<<<<<< HEAD
-			
-			// HACK: Send data via global variable
-			GameView.spheroGrid = spheroGrid;
-			
-			Intent gotoGameActivity = new Intent(getContext(), GameActivity.class);
-			getContext().startActivity(gotoGameActivity);
-			activity.finish();
-=======
 			showDoneDialog();
->>>>>>> Add 'Ready to play' dialog after setup view completes.
 		}
 		
 		return true;
