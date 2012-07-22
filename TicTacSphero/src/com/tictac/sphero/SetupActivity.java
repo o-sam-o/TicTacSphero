@@ -43,6 +43,7 @@ public class SetupActivity extends Activity {
 			}
 		});
 		AlertDialog dialog = alertBuilder.create();
+		dialog.setTitle("Instructions");
 		dialog.show();
         
         setupView = new SetupView(this);
