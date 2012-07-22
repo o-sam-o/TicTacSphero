@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Point;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -119,6 +120,28 @@ public class GameView extends View {
 		}
 	}
 	
+	public void winAnimation(final boolean on){
+		if (!game.isGameOver()) {
+			//End animation
+			return;
+		}
+		
+		for(Point p : game.getWinningCells()) {
+			Player player = game.get(p.x, p.y);
+			if(!on)
+				player = Player.NONE;
+			spheroGrid.set(p.x, p.y, player);
+		}
+		
+        //Send delayed message on a handler to run blink again
+        final Handler handler = new Handler();                       // 3
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                winAnimation(on ? false : true);
+            }
+        }, 1000);
+	}
+	
 	// === Touch ===
 	
 	@Override
@@ -143,6 +166,7 @@ public class GameView extends View {
         if (game.isGameOver()) {
             showGameOverDialog();
             logMedioGameEnd();
+            winAnimation(false);
   	    }
         
         super.onTouchEvent(event);

@@ -1,5 +1,11 @@
 package com.tictac.sphero.game;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import android.graphics.Point;
+
 public class Game {
 	private Player currentPlayer;
 	private Player[][] cell;
@@ -37,29 +43,40 @@ public class Game {
 	}
 	
 	public Player getWinner() {
+		List<Point> winningCells = getWinningCells();
+		
+		if(winningCells.isEmpty()) {
+			return Player.NONE;
+		} else {
+			Point p = winningCells.get(0);
+			return get(p.x, p.y);
+		}
+	}
+	
+	public List<Point> getWinningCells(){
 		// Vertical
 		for (int x=0; x<3; x++) {
 			if (isEqualAndNotNone(get(x,0), get(x,1), get(x,2))) {
-				return get(x,0);
+				return Arrays.asList(new Point(x, 0), new Point(x, 1), new Point(x,2));
 			}
 		}
 		
 		// Horizontal
 		for (int y=0; y<3; y++) {
 			if (isEqualAndNotNone(get(0,y), get(1,y), get(2,y))) {
-				return get(0,y);
+				return Arrays.asList(new Point(0, y), new Point(1, y), new Point(2,y));
 			}
 		}
 		
 		// Diagonal
 		if (isEqualAndNotNone(get(0,0), get(1,1), get(2,2))) {
-			return get(0,0);
+			return Arrays.asList(new Point(0, 0), new Point(1, 1), new Point(2,2));
 		}
 		if (isEqualAndNotNone(get(0,2), get(1,1), get(2,0))) {
-			return get(0,2);
+			return Arrays.asList(new Point(0, 2), new Point(1, 1), new Point(2,0));
 		}
 		
-		return Player.NONE;
+		return new ArrayList<Point>();
 	}
 	
 	public boolean isTie() {
