@@ -198,4 +198,88 @@
 		<item name="@android:windowExitAnimation">@anim/disappear</item>
 	</style>
 
+	    <style name="Titlebar">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:background">@drawable/black_titlebar_bg</item>
+    </style>
+    
+	        <style name="Footer">
+
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:background">@drawable/black_titlebar_bg</item>
+    </style>
+    
+	        
+    <!-- Buttons -->
+    <style name="MlButton">
+
+        <item name="android:layout_width">85dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">6dp</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/button_state_bg</item>
+    </style>
+
+    <style name="MlButton.FooterButton">
+        <item name="android:layout_margin">5dp</item>
+    </style>
+	
+        <!-- HR -->
+    <style name="Hr">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#88ffffff</item>
+    </style>
+
+    <style name="Hr.Top">
+        <item name="android:background">#88ffffff</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
+
+    <style name="Hr.Bottom">
+        <item name="android:background">#88000000</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+
+    <!-- List Items -->
+    <style name="ListItem">
+        <item name="android:background">@drawable/list_item_state_bg</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">62dp</item>
+    </style>
+
+    <style name="ListItemText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="ListItemText.Title">
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="ListItemText.LineNumber">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:layout_margin">1dp</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+   
+        <style name="CommandIcon">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+    </style>
+    
+    
 </resources>

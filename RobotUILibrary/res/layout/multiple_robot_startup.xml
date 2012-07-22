@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res/com.orbotix.macrolab"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+            android:background="#aa000000">
+
+    <com.orbotix.macrolab.view.Titlebar
+        android:id="@+id/titlebar"
+        style="@style/Titlebar"
+        />
+
+    <TextView
+        android:id="@+id/instructions"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titlebar"
+        android:padding="15dp"
+        android:text="@string/instructions"
+        android:background="#ff000000"
+        />
+
+
+    <com.orbotix.macrolab.connection.RobotConnectionListView
+        android:id="@+id/robot_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/instructions"
+        android:layout_above="@+id/done_footer"
+        />
+
+        <com.orbotix.macrolab.view.Footer
+        android:id="@+id/done_footer"
+        style="@style/Footer"
+        >
+
+        <com.orbotix.macrolab.view.IconButton
+                android:id="@+id/okay_button"
+                style="@style/MlButton"
+                android:layout_centerHorizontal="true"
+                android:onClick="onDoneClicked"
+                />
+
+    </com.orbotix.macrolab.view.Footer>
+
+</RelativeLayout>

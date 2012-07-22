@@ -1,6 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<declare-styleable name="ToggleView">
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <declare-styleable name="Titlebar">
+        <attr name="title" format="string" />
+        <attr name="action_text" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="ProgressSeekBar">
+        <attr name="title" />
+        <attr name="max" format="integer" />
+        <attr name="min" format="integer" />
+        <attr name="progress" format="integer" />
+        <attr name="display_type" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="is_float" value="1" />
+            <enum name="percent" value="2" />
+        </attr>
+        <attr name="is_signed" format="boolean" />
+        <attr name="android:progressDrawable" />
+
+    </declare-styleable>
+
+    <declare-styleable name="IconListItemView">
+        <attr name="title" />
+        <attr name="icon" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="IconButton">
+        <attr name="title" />
+        <attr name="icon" />
+    </declare-styleable>
+
+    <declare-styleable name="InstructionsView">
+        <attr name="title"/>
+        <attr name="color" format="color"/>
+        <attr name="text" format="string"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="CheckedListItemView">
+        <attr name="android:text" />
+    </declare-styleable>
+
+    <declare-styleable name="TouchListView">
+        <attr name="normal_height" format="dimension" />
+        <attr name="expanded_height" format="dimension" />
+        <attr name="grabber" format="reference" />
+        <attr name="dragndrop_background" format="color" />
+        <attr name="remove_mode">
+            <enum name="none" value="-1" />
+            <enum name="fling" value="0" />
+            <enum name="slide" value="1" />
+            <enum name="slideRight" value="1" />
+            <enum name="slideLeft" value="2" />
+        </attr>
+    </declare-styleable>
+
+    	<declare-styleable name="ToggleView">
 		<attr name="position1Background" format="reference" />
 		<attr name="position2Background" format="reference" />
 	    <attr name="toggleButton" format="reference" />
@@ -21,5 +76,5 @@
         <attr name="edge_overlap" format="dimension" />
 
     </declare-styleable>
-
+    
 </resources>

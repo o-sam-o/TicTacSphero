@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res/com.orbotix.macrolab">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/action_button"
+        >
+        <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Title"
+                style="@style/Dialog.Title.Text"
+                android:ellipsize="end"
+                />
+    </RelativeLayout>
+
+
+
+<!--     <com.orbotix.macrolab.view.IconButton
+        android:id="@+id/action_button"
+        style="@style/MlButton"
+        android:layout_alignParentRight="true"
+        app:title="Action"
+        android:visibility="gone"
+        /> -->
+</merge>

@@ -13,4 +13,10 @@
     <string name="done_button_text">DONE</string>
     <string name="calibration_title">calibration</string>
     <string name="BuySphero">Buy a Sphero™</string>
+    
+        <!-- MultipleRobotStartupActivity -->
+    <string name="instructions">
+        Select one or more Spheros from the list to connect.
+    </string>
+    
 </resources>

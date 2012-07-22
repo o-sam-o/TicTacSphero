@@ -1,0 +1,15 @@
+<resources>
+
+    <color name="dark_green">
+        #ff005500
+    </color>
+
+    <color name="sphero_blue">
+        #ff0093d0
+    </color>
+
+    <color name="sphero_blue_faded">
+        #880093d0
+    </color>
+
+</resources>
