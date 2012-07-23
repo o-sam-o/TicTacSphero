@@ -16,6 +16,6 @@ This is a project done at the AT&T Casual Gaming Hackathon 2012. This app uses s
 There seems to be a limit of 7 bluetooth connections to a single Andriod device, as a result we where unable to get a full 3x3 grip operating.
 
 ## License
-BSD except for the context of RobotUILibrary, refer to Sphero doco for it's license.
+BSD except for the contents of RobotUILibrary, refer to Sphero doco for it's license.
 
 ### WARNING: THIS IS HACKY CODE. COMPLETED IN 16 HOURS. DO NOT EXPECT BEAUTIFUL CODE.
