@@ -8,4 +8,11 @@ This is a project done at the AT&T Casual Gaming Hackathon 2012. This app uses s
 * [David Foster](http://dafoster.net)
 * [Alexander Abbott](http://smartboyssite.net)
 
+## Videos
+* https://vimeo.com/46205290
+* https://vimeo.com/46205291
+
+## Limitation
+There seems to be a limit of 7 bluetooth connections to a single Andriod device, as a result we where unable to get a full 3x3 grip operating.
+
 ### WARNING: THIS IS HACKY CODE. COMPLETED IN 16 HOURS. DO NOT EXPECT BEAUTIFUL CODE.
